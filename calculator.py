@@ -52,16 +52,21 @@ def divide_numbers(num1, num2):
     """
     
     if num2 == 0:
-          return "Error: Division by zero is not allowed."
+          return "Error: Division by zero is not allowed by Fraterne'system."
     return num1 / num2
-
+ 
 def parse_numbers(args):
     """Convert command line arguments to a list of numbers."""
-    try:
-        return [float(arg) for arg in args]
-    except ValueError:
-        print("Error: All inputs must be valid numbers.")
-        sys.exit(1)
+    numbers = []
+    for arg in args:
+        try:
+            number = float(arg)  # Try to convert to float
+            numbers.append(number)  # Add valid number to the list
+        except ValueError:
+            print(f"Error: '{arg}' is not a valid number.")  # Print error for invalid input
+            sys.exit(1)  # Exit the program with an error code
+    return numbers
+
 
 def main():
     """Main function to run the calculator."""
