@@ -48,13 +48,11 @@ def divide_numbers(num1, num2):
     num2 (float): The number to divide by.
 
     Returns:
-    float: The quotient of num1 divided by num2.
-
-    Raises:
-    ValueError: If num2 is zero, an error will be raised since division by zero is not allowed.
+    float or str: The quotient of num1 divided by num2 or an error message if division by zero.
     """
+    
     if num2 == 0:
-        raise ValueError("Error: Division by zero is not allowed my Friend.")
+          return "Error: Division by zero is not allowed."
     return num1 / num2
 
 def parse_numbers(args):
