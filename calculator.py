@@ -107,9 +107,9 @@ def main():
     elif operation == 'subtract':
         result = subtract_numbers(numbers[0], numbers[1])
     elif operation == 'multiply':
-        result = multiply(numbers)
+        result = multiply_numbers(numbers[0], numbers[1])  # Use multiply_numbers
     elif operation == 'divide':
-        result = divide(numbers)
+        result = divide_numbers(numbers[0], numbers[1])  # Use divide_numbers
     else:
         print("Error: Unsupported operation.")
         sys.exit(1)
