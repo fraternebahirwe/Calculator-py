@@ -71,14 +71,17 @@ def parse_numbers(args):
 def main():
     """Main function to run the calculator."""
     # Check for the right number of arguments
-    if len(sys.argv) < 4:
+    # We expect at least 3 arguments: the operation and two numbers
+    if len(sys.argv) != 4:
         print("Usage: calc <operation> <number1> <number2>")
         print("Supported operations: add, subtract, multiply, divide")
         sys.exit(1)
-
+    
+    # Extract the operation type and parse numbers
     operation = sys.argv[1].lower()  # Get the operation type
     numbers = parse_numbers(sys.argv[2:])  # Parse and convert inputs
 
+    # It's already ensured that we get exactly two numbers in parse_numbers
     if len(numbers) != 2:
         print("Error: Exactly two numbers are required.")
         sys.exit(1)
