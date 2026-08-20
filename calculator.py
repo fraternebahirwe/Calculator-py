@@ -28,22 +28,61 @@ def subtract_numbers(num1, num2):
     result = num1 - num2
     return result
 
-def multiply(numbers):
-    """Return the product of the numbers."""
-    result = 1
-    for num in numbers:
-        result *= num
+def multiply_numbers(num1, num2):
+    """
+    Multiply two numbers.
+
+    Parameters:
+    num1 (float): The first number to be multiplied.
+    num2 (float): The second number to be multiplied.
+
+    Returns:
+    float: The product of num1 and num2.
+    """
+    # Calculate the product of the two numbers
+    result = num1 * num2
     return result
 
-def divide(numbers):
-    """Return the result of dividing the first number by the rest."""
-    if 0 in numbers[1:]:
-        return "Error: Division by zero is not allowed."
+
+def divide_numbers(num1, num2):
+    """
+    Divide one number by another.
+
+    Parameters:
+    num1 (float): The number to be divided.
+    num2 (float): The number to divide by.
+
+    Returns:
+    float: The quotient of num1 divided by num2.
+
+    Raises:
+    ValueError: If num2 is zero, an error will be raised since division by zero is not allowed.
+    """
+    # Check if the divisor is zero to avoid division by zero
+    if num2 == 0:
+        raise ValueError("Error: Division by zero is not allowed.")
     
-    result = numbers[0]
-    for num in numbers[1:]:
-        result /= num
+    # Calculate the quotient
+    result = num1 / num2
     return result
+
+
+# Example usage of the functions
+if __name__ == "__main__":
+    a = 10
+    b = 5
+
+    # Multiplying two numbers
+    product_result = multiply_numbers(a, b)
+    print(f"The product of {a} and {b} is: {product_result}")
+
+    # Dividing two numbers
+    try:
+        divide_result = divide_numbers(a, b)
+        print(f"The quotient of {a} divided by {b} is: {divide_result}")
+    except ValueError as e:
+        print(e)
+
 
 def parse_numbers(args):
     """Convert command line arguments to a list of numbers."""
