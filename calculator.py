@@ -1,5 +1,9 @@
 import sys
 
+class CalculatorError(Exception):
+    """Custom exception for calculator errors."""
+    pass
+
 def add_numbers(num1, num2):
     """Add two numbers."""
     return num1 + num2
@@ -15,8 +19,16 @@ def multiply_numbers(num1, num2):
 def divide_numbers(num1, num2):
     """Divide one number by another."""
     if num2 == 0:
-        return "Error: Division by zero is not allowed."
+        raise CalculatorError("Division by zero is not allowed.")
     return num1 / num2
+
+# Dictionary to map operation names to functions
+operations = {
+    'add': add_numbers,
+    'subtract': subtract_numbers,
+    'multiply': multiply_numbers,
+    'divide': divide_numbers
+}
 
 def parse_numbers(args):
     """Convert command line arguments to a list of numbers."""
@@ -44,21 +56,15 @@ def main():
 
             # Perform the operation
             try:
-                if operation == 'add':
-                    result = add_numbers(numbers[0], numbers[1])
-                elif operation == 'subtract':
-                    result = subtract_numbers(numbers[0], numbers[1])
-                elif operation == 'multiply':
-                    result = multiply_numbers(numbers[0], numbers[1])
-                elif operation == 'divide':
-                    result = divide_numbers(numbers[0], numbers[1])
+                if operation in operations:
+                    result = operations[operation](numbers[0], numbers[1])
                 else:
                     print("Error: Unsupported operation.")
                     continue  # Start the next iteration of the loop
 
                 print(f"Result: {result}")
 
-            except Exception as error:
+            except CalculatorError as error:
                 print(f"Error: {error}")
 
             break  # Exit the loop after processing the command-line args
@@ -81,27 +87,15 @@ def main():
                 print("Error: Exactly two valid numbers are required.")
                 continue  # Start the next iteration of the loop
 
-            # Perform the operation as above...
-
-
-        # Perform the operation
-        try:
-            if operation == 'add':
-                result = add_numbers(numbers[0], numbers[1])
-            elif operation == 'subtract':
-                result = subtract_numbers(numbers[0], numbers[1])
-            elif operation == 'multiply':
-                result = multiply_numbers(numbers[0], numbers[1])
-            elif operation == 'divide':
-                result = divide_numbers(numbers[0], numbers[1])
-            else:
-                print("Error: Unsupported operation.")
-                continue  # Start the next iteration of the loop
-
-            print(f"Result: {result}")
-
-        except Exception as error:
-            print(f"Error: {error}")
+            # Perform the operation
+            try:
+                if operation in operations:
+                    result = operations[operation](numbers[0], numbers[1])
+                    print(f"Result: {result}")
+                else:
+                    print("Error: Unsupported operation.")
+            except CalculatorError as error:
+                print(f"Error: {error}")
 
 if __name__ == "__main__":
     main()
